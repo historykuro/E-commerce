@@ -2,7 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import bodyParser from "body-parser";
+import initRoutes from "./routes/index.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -25,6 +26,9 @@ mongoose
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
+initRoutes(app);
+
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", function (req, res) {
